@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pizza House | Best Pizza in Vijapur & Gandhinagar</title>
+
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Internal CSS Styles -->
+  <style>
+    /* Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --primary: #ff3344;
+      --primary-orange: #ff6b00;
+      --secondary: #ffb703;
+      --dark: #0f0f12;
+      --card-bg: #18181f;
+      --card-border: rgba(255, 255, 255, 0.08);
+      --white: #ffffff;
+      --gray: #9e9ea7;
+      --gradient: linear-gradient(135deg, #ff3344 0%, #ff6b00 100%);
+    }
+
+    body {
+      background-color: var(--dark);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(15, 15, 18, 0.85);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      z-index: 1000;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.2rem 2rem;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo i {
+      color: var(--primary);
+      filter: drop-shadow(0 0 8px rgba(255, 51, 68, 0.6));
+    }
+
+    .logo span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--white);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .nav-btn {
+      background: var(--gradient);
+      color: var(--white);
+      padding: 0.6rem 1.4rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 15px rgba(255, 51, 68, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 51, 68, 0.5);
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--white);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(180deg, rgba(15,15,18,0.4) 0%, rgba(15,15,18,0.95) 100%), 
+                  url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 1.5rem 4rem;
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .tagline-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 51, 68, 0.15);
+      border: 1px solid rgba(255, 51, 68, 0.3);
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hero-content h1 {
+      font-size: 3.8rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+      letter-spacing: -1px;
+    }
+
+    .hero-content h1 span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      color: var(--gray);
+      margin: 0 auto 2.5rem;
+      max-width: 620px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .primary-btn {
+      background: var(--gradient);
+      color: var(--white);
+      box-shadow: 0 8px 25px rgba(255, 51, 68, 0.4);
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(255, 51, 68, 0.6);
+    }
+
+    .secondary-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--white);
+      backdrop-filter: blur(10px);
+    }
+
+    .secondary-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-3px);
+    }
+
+    /* Menu Section */
+    .menu-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.5px;
+    }
+
+    .section-title span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section-subtitle {
+      color: var(--gray);
+      font-size: 1.1rem;
+    }
+
+    .menu-categories {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .cat-btn {
+      padding: 0.6rem 1.6rem;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--gray);
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+
+    .cat-btn.active, .cat-btn:hover {
+      background: var(--gradient);
+      color: var(--white);
+      border-color: transparent;
+      box-shadow: 0 4px 15px rgba(255, 51, 68, 0.3);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.2rem;
+    }
+
+    .menu-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 51, 68, 0.4);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 51, 68, 0.15);
+    }
+
+    .img-container {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+    }
+
+    .menu-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .menu-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: rgba(15, 15, 18, 0.8);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .badge-veg i {
+      color: #2ed573;
+    }
+
+    .card-details {
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-details h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: var(--white);
+    }
+
+    .card-details p {
+      color: var(--gray);
+      font-size: 0.92rem;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .card-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .price {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--secondary);
+    }
+
+    .order-item-btn {
+      background: rgba(37, 211, 102, 0.15);
+      color: #25d366;
+      border: 1px solid rgba(37, 211, 102, 0.3);
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .order-item-btn:hover {
+      background: #25d366;
+      color: var(--white);
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    }
+
+    /* About Section */
+    .about-section {
+      background: #131317;
+      padding: 6rem 2rem;
+      border-top: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .about-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-text h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .about-text h2 span {
+      color: var(--secondary);
+    }
+
+    .about-text p {
+      color: var(--gray);
+      font-size: 1.1rem;
+      margin-bottom: 3rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 2rem;
+      border-radius: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-card i {
+      font-size: 2.5rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h4 {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .info-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 2.5rem 2rem;
+      border-radius: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .info-card:hover {
+      border-color: rgba(255, 51, 68, 0.4);
+      transform: translateY(-5px);
+    }
+
+    .info-card i {
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+    }
+
+    .info-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .info-card p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .call-link {
+      color: var(--primary-orange);
+      text-decoration: none;
+      font-weight: 700;
+      display: block;
+      margin-top: 0.3rem;
+    }
+
+    /* Footer */
+    footer {
+      background: #0a0a0c;
+      border-top: 1px solid var(--card-border);
+      text-align: center;
+      padding: 2rem;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+
+    footer strong {
+      color: var(--white);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        background: rgba(15, 15, 18, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        display: none;
+        border-bottom: 1px solid var(--card-border);
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .section-title {
+        font-size: 2.2rem;
+      }
+
+      .nav-btn {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <i class="fa-solid fa-pizza-slice"></i> Pizza <span>House</span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="https://wa.me/918511916534?text=Hello%20Pizza%20House,%20I%20want%20to%20place%20an%20order!" target="_blank" class="nav-btn">
+        <i class="fa-brands fa-whatsapp"></i> Order Direct
+      </a>
+      <div class="hamburger" id="hamburger">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <div class="tagline-badge">
+        <i class="fa-solid fa-fire"></i> Freshly Baked in Vijapur & Gandhinagar
+      </div>
+      <h1>Authentic Handcrafted <span>Pizza House</span></h1>
+      <p>Loaded with fresh mozzarella, rich homemade sauces, and locally sourced fresh ingredients. Choose from over 100 delicious pizza choices!</p>
+      <div class="hero-btns">
+        <a href="#menu" class="btn primary-btn"><i class="fa-solid fa-utensils"></i> Explore 100 Items</a>
+        <a href="tel:+918511916534" class="btn secondary-btn"><i class="fa-solid fa-phone"></i> Call Store</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu" class="menu-section">
+    <div class="section-header">
+      <h2 class="section-title">Explore Our <span>100 Hot Items</span></h2>
+      <p class="section-subtitle">Click any item to order directly on WhatsApp (+91 8511916534)!</p>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="menu-categories">
+      <button class="cat-btn active" onclick="filterMenu('all', event)">All 100 Items</button>
+      <button class="cat-btn" onclick="filterMenu('veg', event)">Veg Pizza (40)</button>
+      <button class="cat-btn" onclick="filterMenu('cheese', event)">Cheese Burst (30)</button>
+      <button class="cat-btn" onclick="filterMenu('sides', event)">Sides & Drinks (30)</button>
+    </div>
+
+    <!-- Pizza Grid -->
+    <div class="menu-grid" id="menuGrid">
+      <!-- Items generated dynamically via JavaScript -->
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="about-container">
+      <div class="about-text">
+        <h2>Why Choose <span>Pizza House</span>?</h2>
+        <p>At <strong>Pizza House</strong>, we prepare every pizza with fresh dough made daily, premium melted mozzarella, and signature herb blend sauces. Serving top-quality pizzas across Vijapur and Gandhinagar!</p>
+        
+        <div class="features">
+          <div class="feature-card">
+            <i class="fa-solid fa-fire-burner"></i>
+            <h4>Stone Baked</h4>
+            <p>Traditional high-heat baking for the crispiest crusts.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fa-solid fa-leaf"></i>
+            <h4>100% Pure Veg</h4>
+            <p>Prepared with strict hygienic standards and fresh veggies.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fa-solid fa-motorcycle"></i>
+            <h4>Lightning Fast</h4>
+            <p>Hot delivery straight to your doorstep across Vijapur.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Location Section -->
+  <section id="contact" class="contact-section">
+    <div class="section-header">
+      <h2 class="section-title">Visit or <span>Contact Us</span></h2>
+      <p class="section-subtitle">Drop by our store or phone in your order today.</p>
+    </div>
+
+    <div class="contact-container">
+      <div class="contact-info">
+        <div class="info-card">
+          <i class="fa-solid fa-location-dot"></i>
+          <h3>Address</h3>
+          <p>Pizza House Main Branch,<br>Vijapur - Gandhinagar Highway,<br>Vijapur, Dist. Gandhinagar,<br>Gujarat, India - 382870</p>
+        </div>
+        <div class="info-card">
+          <i class="fa-solid fa-phone"></i>
+          <h3>Call & Order</h3>
+          <p>Tap below to call directly:</p>
+          <a href="tel:+918511916534" class="call-link">+91 85119 16534</a>
+        </div>
+        <div class="info-card">
+          <i class="fa-solid fa-clock"></i>
+          <h3>Store Timing</h3>
+          <p>Open All Days</p>
+          <p><strong>11:00 AM - 11:00 PM</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 <strong>Pizza House</strong> Vijapur, Gandhinagar. Call: +91 8511916534</p>
+  </footer>
+
+  <!-- Internal JavaScript -->
+  <script>
+    const STORE_PHONE = "918511916534"; // Updated official store mobile number
+
+    // High Quality Image Repositories
+    const pizzaImages = [
+      "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80"
+    ];
+
+    const sideImages = [
+      "https://images.unsplash.com/photo-1619535860434-ba1d8fa12536?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=600&q=80"
+    ];
+
+    // Generate 100 Unique Menu Items Programmatically
+    function generate100MenuItems() {
+      const items = [];
+      
+      const toppings = ["Paneer", "Capsicum", "Onion", "Golden Corn", "Jalapeno", "Olive", "Mushroom", "Red Paprika", "Tomato", "Cheese"];
+      const styles = ["Supreme", "Special", "Delight", "Fiesta", "Sizzler", "Feast", "Tikka", "Tandoori", "Schezwan", "Loaded"];
+      const tags = ["Bestseller", "Chef Special", "Must Try", "Popular", "Hot & Spicy", "Classic"];
+
+      // 1-40: Veg Pizzas
+      for (let i = 1; i <= 40; i++) {
+        const top1 = toppings[(i - 1) % toppings.length];
+        const top2 = toppings[i % toppings.length];
+        const style = styles[(i - 1) % styles.length];
+        items.push({
+          id: i,
+          name: `${top1} & ${top2} ${style}`,
+          category: "veg",
+          price: 199 + (i * 5),
+          image: pizzaImages[(i - 1) % pizzaImages.length],
+          description: `Freshly baked crust loaded with delicious ${top1.toLowerCase()}, ${top2.toLowerCase()}, signature pizza sauce, and melted mozzarella cheese.`,
+          tag: tags[(i - 1) % tags.length]
+        });
+      }
+
+      // 41-70: Cheese Burst Pizzas
+      for (let i = 41; i <= 70; i++) {
+        const top1 = toppings[(i - 1) % toppings.length];
+        const style = styles[(i - 1) % styles.length];
+        items.push({
+          id: i,
+          name: `Cheese Burst ${top1} ${style}`,
+          category: "cheese",
+          price: 349 + ((i - 40) * 5),
+          image: pizzaImages[(i - 1) % pizzaImages.length],
+          description: `Double-layered crust overflowing with liquid cheese inside, topped with fresh ${top1.toLowerCase()} and herbs.`,
+          tag: "Cheese Burst"
+        });
+      }
+
+      // 71-100: Sides, Drinks & Desserts
+      const sideNames = ["Garlic Breadsticks", "Stuffed Garlic Bread", "French Fries", "Peri Peri Fries", "Choco Lava Cake", "Cold Drink", "Cheese Dip", "Pasta Special"];
+      for (let i = 71; i <= 100; i++) {
+        const sideName = sideNames[(i - 71) % sideNames.length];
+        items.push({
+          id: i,
+          name: `${sideName} Vol. ${i - 70}`,
+          category: "sides",
+          price: 79 + ((i - 70) * 4),
+          image: sideImages[(i - 71) % sideImages.length],
+          description: `Hot and tasty ${sideName.toLowerCase()} prepared fresh on order at Pizza House Vijapur.`,
+          tag: "Side & Beverage"
+        });
+      }
+
+      return items;
+    }
+
+    const menuItems = generate100MenuItems();
+
+    // Initialize Page
+    document.addEventListener("DOMContentLoaded", () => {
+      displayMenuItems(menuItems);
+
+      // Mobile Nav Toggle
+      const hamburger = document.getElementById('hamburger');
+      const navLinks = document.getElementById('navLinks');
+      hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+      });
+    });
+
+    // Render Items
+    function displayMenuItems(items) {
+      const menuGrid = document.getElementById("menuGrid");
+
+      menuGrid.innerHTML = items.map(item => {
+        const orderMessage = encodeURIComponent(`Hello Pizza House (Vijapur)! I want to order 1x ${item.name} (₹${item.price}). Please share delivery details.`);
+        const waLink = `https://wa.me/${STORE_PHONE}?text=${orderMessage}`;
+
+        return `
+          <div class="menu-card">
+            <div class="img-container">
+              <span class="badge badge-veg"><i class="fa-solid fa-circle"></i> ${item.tag}</span>
+              <img src="${item.image}" alt="${item.name}" loading="lazy">
+            </div>
+            <div class="card-details">
+              <h3>${item.name}</h3>
+              <p>${item.description}</p>
+              <div class="card-bottom">
+                <span class="price">₹${item.price}</span>
+                <a href="${waLink}" target="_blank" class="order-item-btn">
+                  <i class="fa-brands fa-whatsapp"></i> Order Now
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Category Filter Handler
+    function filterMenu(category, event) {
+      const buttons = document.querySelectorAll('.cat-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      if (category === 'all') {
+        displayMenuItems(menuItems);
+      } else {
+        const filtered = menuItems.filter(item => item.category === category);
+        displayMenuItems(filtered);
+      }
+    }
+  </script>
+</body>
+</html>
